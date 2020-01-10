@@ -13,7 +13,10 @@ Requirements
 composer require voidfire/calendar
 ````
 ````
-php artisan vendor:publish --tag=events-manager-migrations --force php artisan migrate
+php artisan vendor:publish --tag=events-manager-migrations --force 
+````
+````
+php artisan migrate
 ````
 
 To setup the card, you must register the card with Nova. This is typically done in the `cards` method of the `NovaServiceProvider`.

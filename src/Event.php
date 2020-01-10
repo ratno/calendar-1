@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Nova;
+namespace Voidfire\Calendar;
 
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -15,7 +15,7 @@ class Event extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Event';
+    public static $model = 'Voidfire\Calendar\Models\Event';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
