@@ -32,9 +32,6 @@ class CardServiceProvider extends ServiceProvider
             Nova::script('calendar', __DIR__.'/../dist/js/card.js');
             Nova::style('calendar', __DIR__.'/../dist/css/card.css');
         });
-        Nova::resources([
-            Event::class,
-        ]);
     }
 
     /**
