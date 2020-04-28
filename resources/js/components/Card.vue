@@ -3,12 +3,12 @@
         <a-calendar @panelChange="onPanelChange" @select="onSelect" @change="onChange">
             <ul class="" slot="dateCellRender" slot-scope="value">
                 <li v-for="event in getDayEvents(value)" :key="event.id">
-                    {{ event.title }}
+                    {{ event.name }}
                 </li>
             </ul>
             <ul class="" slot="monthCellRender" slot-scope="value">
                 <li v-for="event in onPanelChange(value)" :key="event.id">
-                    {{ event.title }}
+                    {{ event.name }}
                 </li>
             </ul>
         </a-calendar>
@@ -25,9 +25,9 @@ export default {
             let monthEvents = []
             if (this.events) {
                 this.events.forEach((event) => {
-                    let event_date = moment(event.start_date)
-                    console.log(moment(event_date).isSame(value, 'month'));
-                    if (moment(event_date).isSame(value, 'month')) {
+                    let appointment_at = moment(event.appointment_at)
+                    console.log(moment(appointment_at).isSame(value, 'month'));
+                    if (moment(appointment_at).isSame(value, 'month')) {
                         monthEvents.push(event)
                     }
                 })
@@ -45,8 +45,8 @@ export default {
             let dayEvents = []
             if (this.events) {
                 this.events.forEach((event) => {
-                    let event_date = moment(event.start_date)
-                    if (moment(event_date).isSame(calendar_date, 'day')) {
+                    let appointment_at = moment(event.appointment_at)
+                    if (moment(appointment_at).isSame(calendar_date, 'day')) {
                         dayEvents.push(event)
                     }
                 })
@@ -55,7 +55,7 @@ export default {
         },
         fetchEvents() {
             this.loading = true
-            Nova.request().get('/nova-vendor/calendar/events').then((response) => {
+            Nova.request().get('/nova-vendor/calendar/appointments').then((response) => {
                 this.loading = false
                 this.events = response.data
                 setTimeout(this.fetchEvents, 60 * 1000)
