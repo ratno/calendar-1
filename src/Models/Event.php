@@ -1,6 +1,6 @@
 <?php
 
-namespace Voidfire\Calendar;
+namespace Voidfire\Calendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
