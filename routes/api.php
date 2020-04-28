@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Voidfire\Calendar\Models\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +14,9 @@ use Voidfire\Calendar\Models\Event;
 |
 */
 
-Route::get('/events', function (Request $request) {
-    $events = Event::all();
+Route::get('/appointments', function (Request $request) {
+    $events = App\Domain\Appointment\Models\Appointment::where('appointment_at', '>', Carbon\Carbon::now()->subWeeks(2))
+        ->get();
+
     return response()->json($events);
 });
